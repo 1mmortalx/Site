@@ -15,6 +15,7 @@
             height: 100vh;
             background-color: #2C2F33;
             font-family: Arial, sans-serif;
+            position: relative; /* Make sure elements are positioned relative to the body */
         }
 
         .button-container {
@@ -47,15 +48,35 @@
             margin-bottom: 30px;
             font-size: 36px;
         }
+
+        /* Style for the message box */
+        #message-box {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #7289DA;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            z-index: 10; /* Ensure it appears on top */
+        }
     </style>
 
-    <!-- Script to change URL -->
+    <!-- Script to handle message display -->
     <script>
-        // Change the displayed URL without reloading the page
-        window.onload = function() {
-            const newUrl = "discord.server.1m";
-            window.history.replaceState({}, document.title, "/" + newUrl);
-        };
+        function showMessage() {
+            // Show the message box
+            const messageBox = document.getElementById("message-box");
+            messageBox.style.display = "block";
+            
+            // Hide the message after 30 seconds (30000 ms)
+            setTimeout(function() {
+                messageBox.style.display = "none";
+            }, 30000);
+        }
     </script>
 </head>
 <body>
@@ -63,9 +84,14 @@
         <h1>Join Our Discord Server</h1>
         <div class="buttons">
             <a href="https://discord.gg/KCAN2E9WfQ" class="join-button">Join</a>
-            <!-- About Us button redirects to 1mmortalx GitHub page -->
-            <a href="https://1mmortalx.github.io/About-Us/" class="about-button">About Us</a>
+            <!-- Updated About Us button to show a message on click -->
+            <button class="about-button" onclick="showMessage()">About Us</button>
         </div>
+    </div>
+
+    <!-- The message box that will display the text -->
+    <div id="message-box">
+        We are a Roblox Team that created a community game and are ready to welcome new players!
     </div>
 </body>
 </html>
